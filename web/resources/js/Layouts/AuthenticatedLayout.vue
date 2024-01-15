@@ -37,10 +37,13 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href="/"
+                                    :active="route().current('/')"
+                                >
+                                    PhotoShare
+                                </NavLink>
                             </div>
-                            <NavLink href="/" :active="route().current('/')">
-                                写真共有
-                            </NavLink>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -151,7 +154,7 @@ const showingNavigationDropdown = ref(false);
                             href="/"
                             :active="route().current('/')"
                         >
-                            写真共有
+                            PhotoShare
                         </ResponsiveNavLink>
                     </div>
 
