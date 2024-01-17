@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id') // usersテーブルのidカラムと紐づく
             ->constrained(); // 外部キー制約
             $table->string('file_name');
-            $table->string('file_path');
             $table->timestamps();
         });
     }
