@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import PhotosRepository from "../repository/photos.js";
 
 const urls = ref([]);
@@ -19,7 +19,9 @@ const init = () => {
     getPhoto();
 };
 
-init();
+onMounted(init);
+
+defineExpose({ init });
 </script>
 
 <template>
@@ -32,11 +34,24 @@ init();
 
 <style scoped>
 .photo-list {
-    display: flex;
+    display: flex; /* フレックスボックスを使用 */
+    flex-wrap: wrap; /* 複数行にまたがって配置 */
+    justify-content: flex-start; /* アイテムを左側に寄せる */
+    align-items: center; /* アイテムを垂直方向に中央揃え */
+    gap: 1rem; /* 画像間の隙間 */
 }
+
 .grid {
-    width: 10rem;
-    height: 10rem;
-    margin: 1rem;
+    width: 100%; /* グリッドの幅を100%に */
+    height: auto; /* 高さを自動調整 */
+    max-width: 10rem; /* 最大幅を10remに設定 */
+    max-height: 10rem; /* 最大高さを10remに設定 */
+    overflow: hidden; /* はみ出た部分を非表示 */
+}
+
+.grid img {
+    width: 100%; /* 画像の幅をコンテナに合わせる */
+    height: auto; /* 高さを自動調整 */
+    object-fit: cover; /* 画像をコンテナにフィットさせる */
 }
 </style>
