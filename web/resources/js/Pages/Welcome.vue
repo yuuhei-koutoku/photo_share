@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import PhotoList from "./PhotoList.vue";
 
 defineProps({
     canLogin: {
@@ -47,6 +48,9 @@ defineProps({
                     >Register</Link
                 >
             </template>
+        </div>
+        <div>
+            <PhotoList />
         </div>
     </div>
 </template>
