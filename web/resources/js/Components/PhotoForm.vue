@@ -4,6 +4,8 @@ import PhotosRepository from "../repository/photos.js";
 
 const fileInput = ref(null);
 
+const emit = defineEmits(["photo-uploaded"]);
+
 const onClickAddImage = () => {
     postPhoto(fileInput.value.files[0]);
 };
@@ -13,6 +15,7 @@ const postPhoto = async (file) => {
         .then((data) => {
             console.log(data);
             alert("写真の投稿が完了しました");
+            emit("photo-uploaded");
         })
         .catch((error) => {
             if (error.response && error.response.status === 401) {
@@ -29,7 +32,7 @@ const postPhoto = async (file) => {
 <template>
     <div class="photo-form">
         <form enctype="multipart/form-data">
-            <input type="file" ref="fileInput" />
+            <input class="select-file" type="file" ref="fileInput" />
             <div>
                 <button
                     type="submit"
@@ -44,6 +47,10 @@ const postPhoto = async (file) => {
 </template>
 
 <style scoped>
+.select-file {
+    margin: 5px 0; /* マージン */
+}
+
 .button-submit {
     background-color: #007bff; /* 青色の背景 */
     color: white; /* 文字は白色 */

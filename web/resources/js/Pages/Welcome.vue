@@ -1,7 +1,16 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import { ref } from "vue";
 import PhotoList from "../Components/PhotoList.vue";
 import PhotoForm from "../Components/PhotoForm.vue";
+
+const photoListRef = ref(null);
+
+const onPhotoUploaded = () => {
+    if (photoListRef.value && photoListRef.value.init) {
+        photoListRef.value.init();
+    }
+};
 
 defineProps({
     canLogin: {
@@ -51,8 +60,8 @@ defineProps({
             </template>
         </div>
         <div>
-            <PhotoList />
-            <PhotoForm />
+            <PhotoList ref="photoListRef" />
+            <PhotoForm @photo-uploaded="onPhotoUploaded" />
         </div>
     </div>
 </template>
