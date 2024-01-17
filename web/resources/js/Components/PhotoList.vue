@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import PhotosRepository from "./../repository/photos.js";
+import PhotosRepository from "../repository/photos.js";
 
 const urls = ref([]);
 
