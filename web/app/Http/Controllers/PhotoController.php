@@ -26,7 +26,7 @@ class PhotoController extends Controller
             'photo' => 'required|file|mimes:jpg,jpeg,png,gif'
         ]);
 
-        // リクエストからファイルを取得する
+        // リクエストからファイルの情報を取得する
         $file = $request->file('photo');
 
         // ユーザーIDを取得する
@@ -37,8 +37,8 @@ class PhotoController extends Controller
             return response()->json(['message' => 'You must be logged in to post photos'], 401);
         }
 
-        // Photoモデルのインスタンスを生成し、storePhotoメソッドを実行する
-        $photo = (new Photo)->storePhoto($file, $userId);
+        // PhotoモデルのstorePhotoメソッドを実行する
+        $photo = Photo::storePhoto($file, $userId);
 
         return response()->json([
             'message' => 'Success',

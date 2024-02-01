@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import PhotosRepository from "../repository/photos.js";
 
 const urls = ref([]);
@@ -12,21 +12,22 @@ const getPhoto = async () => {
         .catch((error) => {
             alert("写真の取得に失敗しました。");
             console.log(error);
-        });
+        })
+        .finally(() => {});
 };
 
 const init = () => {
     getPhoto();
 };
 
-onMounted(init);
+init();
 
 defineExpose({ init });
 </script>
 
 <template>
     <div class="photo-list">
-        <div class="grid" v-for="url in urls" :key="url">
+        <div class="grid" v-for="(url, index) in urls" :key="index">
             <img :src="url.url" alt="" />
         </div>
     </div>
