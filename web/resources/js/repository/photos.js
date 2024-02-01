@@ -16,6 +16,7 @@ export default {
         return new Promise((resolve, reject) => {
             // 写真を送るにあたってformDataオブジェクトを使用する
             let formData = new FormData();
+            // "photo"キーでファイルオブジェクトを追加
             formData.append("photo", file);
 
             axios

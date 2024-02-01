@@ -25,7 +25,9 @@ const postPhoto = async (file) => {
             }
             console.log(error);
         })
-        .finally(() => {});
+        .finally(() => {
+            fileInput.value.value = "";
+        });
 };
 </script>
 
