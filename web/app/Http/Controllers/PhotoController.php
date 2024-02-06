@@ -12,6 +12,7 @@ class PhotoController extends Controller
     {
         $images = Photo::all()->map(function ($photo) {
             return [
+                'id' => $photo->id,
                 'url' => Storage::url('photos/' . $photo->file_name)
             ];
         });
@@ -44,5 +45,14 @@ class PhotoController extends Controller
             'message' => 'Success',
             'photo' => $photo
         ]);
+    }
+
+    public function show($id)
+    {
+        // Photoモデルを使用してデータを取得
+        $photo = Photo::with('user')->findOrFail($id);
+
+        // 写真のデータをJSON形式で返す
+        return response()->json($photo);
     }
 }

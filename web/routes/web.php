@@ -30,6 +30,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/photos/{id}', function ($id) {
+    return Inertia::render('PhotoDetail', ['id' => $id]);
+});
+
 Route::middleware('auth')->group(function () {
     Route::post('/photos/add', [PhotoController::class, 'addImage']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

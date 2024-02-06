@@ -49,6 +49,13 @@ const postPhoto = async (file) => {
 </template>
 
 <style scoped>
+.photo-form {
+    max-width: 540px; /* 最大幅を540pxに設定 */
+    margin: 0 auto; /* 上下のマージンを0に、左右のマージンを自動調整して中央寄せ */
+    margin-top: 12px;
+    padding: 0 24px; /* 左右のパディングを24pxに設定 */
+}
+
 .select-file {
     margin: 5px 0; /* マージン */
 }
