@@ -16,6 +16,7 @@ use App\Http\Controllers\PhotoController;
 */
 
 Route::get('/photos', [PhotoController::class, 'getAllImages']);
+Route::get('/photos/{id}', [PhotoController::class, 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

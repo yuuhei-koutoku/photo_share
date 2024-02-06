@@ -41,7 +41,7 @@ const showingNavigationDropdown = ref(false);
                                     href="/"
                                     :active="route().current('/')"
                                 >
-                                    PhotoShare
+                                    Photo Share
                                 </NavLink>
                             </div>
                         </div>
@@ -154,7 +154,7 @@ const showingNavigationDropdown = ref(false);
                             href="/"
                             :active="route().current('/')"
                         >
-                            PhotoShare
+                            Photo Share
                         </ResponsiveNavLink>
                     </div>
 
