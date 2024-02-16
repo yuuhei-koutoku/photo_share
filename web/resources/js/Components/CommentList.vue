@@ -3,7 +3,7 @@ import { onMounted } from "vue";
 import { useCommentsStore } from "../stores/comments";
 
 const props = defineProps({
-    id: String,
+    id: Number,
 });
 
 const store = useCommentsStore();
@@ -44,6 +44,12 @@ div {
     margin-bottom: 0.5rem; /* 下部に0.5remのマージンを設定 */
     background-color: #f7f7f7; /* 背景色を薄いグレーに設定 */
     border-radius: 0.375rem; /* コンテナの角をわずかに丸める */
+}
+
+/* 個々のコメントのpタグのスタイリング */
+.comment p {
+    white-space: pre-wrap; /* テキスト内の空白と改行を保持 */
+    word-wrap: break-word; /* 文字列を折り返す */
 }
 
 /* コメントがない場合のメッセージのスタイリング */

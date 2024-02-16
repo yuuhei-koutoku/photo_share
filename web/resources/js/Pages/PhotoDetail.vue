@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
 import CommentList from "../Components/CommentList.vue";
+import CommentForm from "../Components/CommentForm.vue";
 
 const props = defineProps({
     id: String,
@@ -60,8 +61,8 @@ onMounted(() => {
             <div v-if="photo" class="comment-list">
                 <CommentList :id="photo.id" />
             </div>
-            <div v-if="$page.props.auth.user" class="comment-form">
-                Comment Form（仮）
+            <div v-if="$page.props.auth.user && photo" class="comment-form">
+                <CommentForm :id="photo.id" />
             </div>
         </div>
     </div>
@@ -168,9 +169,8 @@ onMounted(() => {
         100% - 48px
     ); /* コンテナの幅を親要素の幅から48px引いた値に設定 */
     max-width: calc(540px - 48px); /* コンテナの最大幅を492pxに制限 */
-    padding: 1rem; /* 全方向に1remのパディングを設定 */
-    border: 1px solid #ccc; /* 周囲に1px幅の灰色の境界線を設定 */
+    margin: 0 auto 1rem; /* 下方向のマージンを1rem、左右のマージンを中央寄せに設定 */
+    padding: 1rem; /* 上下方向に0.5remのパディングを設定 */
     background-color: #ffffff; /* 背景色を白に設定 */
-    margin: 0 auto 2rem; /* 上のマージンを0、左右のマージンを自動で調整して中央寄せ、下のマージンを2remに設定 */
 }
 </style>

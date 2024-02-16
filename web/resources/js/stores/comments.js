@@ -15,5 +15,15 @@ export const useCommentsStore = defineStore("comments", {
                 console.error(error);
             }
         },
+        async addComment(photoId, content) {
+            try {
+                await axios.post(`/photos/${photoId}/comments`, {
+                    content,
+                });
+                this.fetchComments(photoId);
+            } catch (error) {
+                console.error(error);
+            }
+        },
     },
 });
