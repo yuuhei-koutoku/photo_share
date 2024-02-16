@@ -22,23 +22,18 @@ class PhotoController extends Controller
 
     public function addImage(Request $request)
     {
-        // バリデーション
         $request->validate([
-            'photo' => 'required|file|mimes:jpg,jpeg,png,gif'
+            'photo' => ['required', 'file', 'mimes:jpg,jpeg,png,gif']
         ]);
 
-        // リクエストからファイルの情報を取得する
         $file = $request->file('photo');
 
-        // ユーザーIDを取得する
         $userId = auth()->id();
 
-        // ユーザーIDがNULLの場合は、「ログインしてください。」と記載されたアラートを表示する
         if (!$userId) {
-            return response()->json(['message' => 'You must be logged in to post photos'], 401);
+            return response()->json(null, 401);
         }
 
-        // PhotoモデルのstorePhotoメソッドを実行する
         $photo = Photo::storePhoto($file, $userId);
 
         return response()->json([
@@ -49,10 +44,8 @@ class PhotoController extends Controller
 
     public function show($id)
     {
-        // Photoモデルを使用してデータを取得
         $photo = Photo::with('user')->findOrFail($id);
 
-        // 写真のデータをJSON形式で返す
         return response()->json($photo);
     }
 }
