@@ -20,12 +20,10 @@ class Photo extends Model
 
         $file->storeAs('photos', $filenameWithExt, 'public');
 
-        $photo = self::create([
+        self::create([
             'user_id' => $userId,
             'file_name' => $filenameWithExt,
         ]);
-
-        return $photo;
     }
 
     public function user()
