@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class PhotoController extends Controller
 {
@@ -22,24 +23,26 @@ class PhotoController extends Controller
 
     public function addImage(Request $request)
     {
-        $request->validate([
-            'photo' => ['required', 'file', 'mimes:jpg,jpeg,png,gif']
-        ]);
+        try {
+            $request->validate([
+                'photo' => ['required', 'file', 'mimes:jpg,jpeg,png,gif']
+            ]);
 
-        $file = $request->file('photo');
+            $file = $request->file('photo');
 
-        $userId = auth()->id();
+            $userId = auth()->id();
 
-        if (!$userId) {
-            return response()->json(null, 401);
+            if (!$userId) {
+                return response()->json(null, 401);
+            }
+
+            Photo::storePhoto($file, $userId);
+
+            return response()->json(null, 201);
+        } catch (\Exception $e) {
+            Log::error('Photo upload failed: ' . $e->getMessage());
+            return response()->json(null, 500);
         }
-
-        $photo = Photo::storePhoto($file, $userId);
-
-        return response()->json([
-            'message' => 'Success',
-            'photo' => $photo
-        ]);
     }
 
     public function show($id)
