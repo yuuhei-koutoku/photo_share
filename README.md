@@ -1,6 +1,6 @@
 # 写真共有アプリ
 
-<img src="images/photo_list.png" width="49%"> <img src="images/photo_detail.png" width="49%">
+<img src="images/photo_share.png" width="49%"> <img src="images/photo_detail.png" width="49%">
 
 ## 機能一覧
 
